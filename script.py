@@ -15,24 +15,24 @@ data = pd.read_csv('data/covid19.csv')
 
 # Cleaning the data
 ## Filling NaN entries
-data[['Province/State']] = data[['Province/State']].fillna('')
+# data[['Province/State']] = data[['Province/State']].fillna('')
 
 ## Removing negative values in 'confirmed' and 'deaths' columns
-average_confirmed_count = data['Confirmed'].mean()
-data.loc[(data['Confirmed'] < 0), 'Confirmed'] = average_confirmed_count
+# average_confirmed_count = data['Confirmed'].mean()
+# data.loc[(data['Confirmed'] < 0), 'Confirmed'] = average_confirmed_count
 
-average_death_count = data['Deaths'].mean()
-data.loc[(data['Deaths'] < 0), 'Deaths'] = average_death_count
+# average_death_count = data['Deaths'].mean()
+# data.loc[(data['Deaths'] < 0), 'Deaths'] = average_death_count
 
 ## Filling missing values with 0s
-data[['Confirmed', 'Deaths', 'Recovered']] = data[['Confirmed', 'Deaths', 'Recovered']].fillna(0)
+# data[['Confirmed', 'Deaths', 'Recovered']] = data[['Confirmed', 'Deaths', 'Recovered']].fillna(0)
 
 # Save cleaned dataset as CSV file
-data.to_csv('data/covid19_clean.csv', index=False)
+# data.to_csv('data/covid19_clean.csv', index=False)
 
 # Read the clean file
-data = pd.read_csv('data/covid19_clean.csv')
-data.fillna(data.mean(), inplace=True)
+# data = pd.read_csv('data/covid19_clean.csv')
+# data.fillna(data.mean(), inplace=True)
 
 # Extract data
 dates = pd.unique(data['Date'])
