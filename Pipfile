@@ -9,6 +9,7 @@ numpy = "*"
 matplotlib = "*"
 jupyterlab = "*"
 seaborn = "*"
+xgboost = "*"
 
 [dev-packages]
 
