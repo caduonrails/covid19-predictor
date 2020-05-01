@@ -6,6 +6,8 @@ import random
 import math
 import time
 from sklearn.svm import SVR
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import PolynomialFeatures
 from sklearn.model_selection import RandomizedSearchCV, train_test_split
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 import datetime
@@ -117,4 +119,28 @@ plt.legend(['Data', 'Forecast'])
 print('MAE:', mean_absolute_error(svm_test_pred, y_test_confirmed))
 print('MSE:',mean_squared_error(svm_test_pred, y_test_confirmed))
 
+plt.show()
+
+# Polinomial regression
+poly = PolynomialFeatures(degree=3)
+poly_X_train_confirmed = poly.fit_transform(X_train_confirmed)
+poly_X_test_confirmed = poly.fit_transform(X_test_confirmed)
+poly_future_forcast = poly.fit_transform(forecast)
+
+bayesian_poly = PolynomialFeatures(degree=4)
+bayesian_poly_X_train_confirmed = bayesian_poly.fit_transform(X_train_confirmed)
+bayesian_poly_X_test_confirmed = bayesian_poly.fit_transform(X_test_confirmed)
+bayesian_poly_future_forcast = bayesian_poly.fit_transform(forecast)
+
+# polynomial regression
+linear_model = LinearRegression(normalize=True, fit_intercept=False)
+linear_model.fit(poly_X_train_confirmed, y_train_confirmed)
+test_linear_pred = linear_model.predict(poly_X_test_confirmed)
+linear_pred = linear_model.predict(poly_future_forcast)
+print('MAE:', mean_absolute_error(test_linear_pred, y_test_confirmed))
+print('MSE:',mean_squared_error(test_linear_pred, y_test_confirmed))
+
+plt.plot(y_test_confirmed)
+plt.plot(test_linear_pred)
+plt.legend(['Test Data', 'Polynomial Regression Predictions'])
 plt.show()
