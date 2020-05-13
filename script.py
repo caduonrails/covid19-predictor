@@ -76,7 +76,7 @@ for i in range(len(forecast)):
 # Predict confirmed cases 
 X_train_confirmed, X_test_confirmed, y_train_confirmed, y_test_confirmed = train_test_split(epidemic_days, world_cases, test_size=0.25, shuffle=False) 
 
-svm_confirmed = SVR(shrinking=True, kernel='poly',gamma=0.01, epsilon=1,degree=5, C=0.1)
+svm_confirmed = SVR(shrinking=True, kernel='poly',gamma=0.01, epsilon=1, degree=5, C=0.1)
 svm_confirmed.fit(X_train_confirmed, y_train_confirmed)
 svm_pred = svm_confirmed.predict(forecast)
 
