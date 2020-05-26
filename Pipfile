@@ -10,6 +10,8 @@ matplotlib = "*"
 jupyterlab = "*"
 seaborn = "*"
 xgboost = "*"
+keras = "*"
+tensorflow = "*"
 
 [dev-packages]
 
